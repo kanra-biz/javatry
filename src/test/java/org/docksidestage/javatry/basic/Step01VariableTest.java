@@ -47,7 +47,12 @@ public class Step01VariableTest extends PlainTestCase {
         String piari = null;
         String dstore = "mai";
         sea = sea + land + piari + ":" + dstore;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => error
+        // result => mystic8null:mai
+        // my take => 違う型同士の計算になるので、足し合わせることができず error になると推測した。
+        // actually => 初めの演算でstringが出てきたので、数字ではなく文字列計算として扱われていた。
+        // learnings => 異なる型で演算するときは、型変換できるものがもう一つの型に合わせて計算されるのかもしれない。
+        //              null + 1 のように型変換で型を合わせられないものはコンパイルエラーになる。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -56,7 +61,8 @@ public class Step01VariableTest extends PlainTestCase {
         String land = "oneman";
         sea = land;
         land = land + "'s dreams";
-        log(sea); // your answer? => 
+        log(sea); // your answer? => oneman
+        // result => oneman
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -65,7 +71,8 @@ public class Step01VariableTest extends PlainTestCase {
         int land = 415;
         sea = land;
         land++;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 415
+        // result => 415
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -75,7 +82,12 @@ public class Step01VariableTest extends PlainTestCase {
         sea = land;
         sea = land.add(new BigDecimal(1));
         sea.add(new BigDecimal(1));
-        log(sea); // your answer? => 
+        log(sea); // your answer? => { BigDecimal: { 415, 1, 1 }}
+        // result => 416
+        // my take => クラスのようなものかと思い、seaにBigDecimalと紐づく形で415, 1, 1が格納されると推測した。
+        // actually => BigDecimalはデータ型であり、.add()は足し合わせた結果を返すメソッドであった。
+        //             そのため、81行目では415に1を足し合わせた結果をseaに格納し、82行目では1を足した結果を返すところがないため、結果として416が出力された。
+        // learnings => .add()は足し合わせた結果を返すメソッドであり、BigDecimalは丸め誤差を生まないためのデータ型だと学んだ。
     }
 
     // ===================================================================================
@@ -89,19 +101,24 @@ public class Step01VariableTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_String() {
         String sea = instanceBroadway;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => null
+        // result => null
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_int() {
         int sea = instanceDockside;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => null
+        // result => 0
+        // my take => `instanceDockside`には何も格納されておらず、何もないものを呼んでいるので`null`になると推測した。
+        // actually => intはただの型でありオブジェクトを用意せず、何も定義されていないintは0になるので結果0と返された。
+        // learnings => 大文字の名前で型定義とオブジェクトの用意を、小文字の略称で型定義のみを行うことを知り、使い分けられることを学んだ。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_Integer() {
         Integer sea = instanceHangar;
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
