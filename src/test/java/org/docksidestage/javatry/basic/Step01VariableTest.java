@@ -53,6 +53,12 @@ public class Step01VariableTest extends PlainTestCase {
         // actually => 初めの演算でstringが出てきたので、数字ではなく文字列計算として扱われていた。
         // learnings => 異なる型で演算するときは、型変換できるものがもう一つの型に合わせて計算されるのかもしれない。
         //              null + 1 のように型変換で型を合わせられないものはコンパイルエラーになる。
+        // TODO ishido [いいね] result, my take とカテゴリ化されていてわかりやすいです^^ by jflute (2026/07/29)
+        // [ふぉろー] Javaの場合、Stringと別のクラスが+で連結された場合は、文字列に引きずられるようなイメージです。
+        // そのとき、その別のクラスはtoString()が呼ばれて、その戻り値(String)と文字列連結されます。
+        // toString()はObject型のメソッドで、すべてのクラスが継承しているので、どのクラスでも呼ぶことができます。
+        // 一方で、"null" という文字列になっちゃうのは、プログラミング言語の決めで、言語によりけりです。
+        // エラーになる言語もあれば、空文字になる言語もあれば、一つでもあればすべてnullという言語も。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -63,6 +69,7 @@ public class Step01VariableTest extends PlainTestCase {
         land = land + "'s dreams";
         log(sea); // your answer? => oneman
         // result => oneman
+        // TODO jflute 1on1にて、変数とインスタンスについて話をする予定 (2026/07/29)
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -88,6 +95,8 @@ public class Step01VariableTest extends PlainTestCase {
         // actually => BigDecimalはデータ型であり、.add()は足し合わせた結果を返すメソッドであった。
         //             そのため、81行目では415に1を足し合わせた結果をseaに格納し、82行目では1を足した結果を返すところがないため、結果として416が出力された。
         // learnings => .add()は足し合わせた結果を返すメソッドであり、BigDecimalは丸め誤差を生まないためのデータ型だと学んだ。
+        // TODO ishido [いいね] add()の分析しっかりできています by jflute (2026/07/29)
+        // TODO jflute 1on1にて、immutableのお話 (2026/07/29)
     }
 
     // ===================================================================================
