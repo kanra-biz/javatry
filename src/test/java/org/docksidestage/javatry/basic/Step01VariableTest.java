@@ -53,23 +53,37 @@ public class Step01VariableTest extends PlainTestCase {
         // actually => 初めの演算でstringが出てきたので、数字ではなく文字列計算として扱われていた。
         // learnings => 異なる型で演算するときは、型変換できるものがもう一つの型に合わせて計算されるのかもしれない。
         //              null + 1 のように型変換で型を合わせられないものはコンパイルエラーになる。
-        // TODO ishido [いいね] result, my take とカテゴリ化されていてわかりやすいです^^ by jflute (2026/07/29)
+        // done ishido [いいね] result, my take とカテゴリ化されていてわかりやすいです^^ by jflute (2026/07/29)
         // [ふぉろー] Javaの場合、Stringと別のクラスが+で連結された場合は、文字列に引きずられるようなイメージです。
         // そのとき、その別のクラスはtoString()が呼ばれて、その戻り値(String)と文字列連結されます。
         // toString()はObject型のメソッドで、すべてのクラスが継承しているので、どのクラスでも呼ぶことができます。
         // 一方で、"null" という文字列になっちゃうのは、プログラミング言語の決めで、言語によりけりです。
         // エラーになる言語もあれば、空文字になる言語もあれば、一つでもあればすべてnullという言語も。
+        // "null" で出る仕様のメリデメ:
+        // o デメリット: 画面やメールでnullって出てきやすい
+        // o メリット: 開発時は画面にnullって出てきてわかりやすい
+        //            (素通りにメリット: 多少変でも動いた方が良い場面もあるかも!?)
+        // 些細なことでもメリデメ考える習慣が大事。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_basic() {
-        String sea = "mystic";
-        String land = "oneman";
-        sea = land;
-        land = land + "'s dreams";
+        String sea = "mystic"; // 1 (1丁目1番地)
+        String land = "oneman"; // 2 (2丁目2番地)
+        sea = land; // seaの1丁目1番地って書かれた紙を消しゴムで消して、2丁目2番地に書き換える
+        land = land + "'s dreams"; // 3: 's dreams
+        log(land); // 4: oneman's dreams
         log(sea); // your answer? => oneman
         // result => oneman
-        // TODO jflute 1on1にて、変数とインスタンスについて話をする予定 (2026/07/29)
+        // done jflute 1on1にて、変数とインスタンスについて話をする予定 (2026/07/29)
+        // #1on1: インスタンスとは？ (2026/07/29)
+        // $ クラスを使って、値をあてはめていって、決まった形で確保しておくもの
+        // 一軒家の例。
+        // インスタンスにフォーカスする大切さ。インスタンス間違いなど起こさないように。
+        // 変数とは？
+        // オブジェクト型は、ポインターみたいに、アドレス(参照)を持っているだけ。
+        // 変数とインスタンスは、1:1ではなく、n:1になりうる
+        // (後半エクササイズで、メソッド間でn:1になるケースの例)
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -80,6 +94,7 @@ public class Step01VariableTest extends PlainTestCase {
         land++;
         log(sea); // your answer? => 415
         // result => 415
+        // #1on1: プリミティヴ型 (2026/07/29)
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -95,8 +110,12 @@ public class Step01VariableTest extends PlainTestCase {
         // actually => BigDecimalはデータ型であり、.add()は足し合わせた結果を返すメソッドであった。
         //             そのため、81行目では415に1を足し合わせた結果をseaに格納し、82行目では1を足した結果を返すところがないため、結果として416が出力された。
         // learnings => .add()は足し合わせた結果を返すメソッドであり、BigDecimalは丸め誤差を生まないためのデータ型だと学んだ。
-        // TODO ishido [いいね] add()の分析しっかりできています by jflute (2026/07/29)
-        // TODO jflute 1on1にて、immutableのお話 (2026/07/29)
+        // done ishido [いいね] add()の分析しっかりできています by jflute (2026/07/29)
+        // #1on1: BigDecimalのソースコードリーディングしてみた (2026/07/29)
+        // 構造に着目して、目的だけ知る。
+        // インスタンス変数とインスタンスメソッドの話。
+        // Pythonの例と比べてみた by いしどさん
+        // TODO jflute 次回の1on1にて、immutableのお話 (2026/07/29)
     }
 
     // ===================================================================================
