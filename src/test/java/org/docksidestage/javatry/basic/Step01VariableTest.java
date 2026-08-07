@@ -149,7 +149,8 @@ public class Step01VariableTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_Integer() {
         Integer sea = instanceHangar;
-        log(sea); // your answer? =>
+        log(sea); // your answer? => null
+        // result => null
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -158,7 +159,8 @@ public class Step01VariableTest extends PlainTestCase {
         instanceMagiclamp = "magician";
         helpInstanceVariableViaMethod(instanceMagiclamp);
         String sea = instanceBroadway + "|" + instanceDockside + "|" + instanceHangar + "|" + instanceMagiclamp;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => bigband|1|null|magician
+        // result => bigband|1|null|magician
     }
 
     private void helpInstanceVariableViaMethod(String instanceMagiclamp) {
@@ -178,7 +180,13 @@ public class Step01VariableTest extends PlainTestCase {
         String sea = "harbor";
         int land = 415;
         helpMethodArgumentImmutableMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => harbor
+        // result => harbor
+        // learnings => 「なぜ、プライベート関数に参照値が渡されているはずなのに、なぜ値が変わらないのか？」198行目の問題を経てもう一度考えてみる。
+        //              理由は2つ。
+        //              - Stringはインスタンスの中身が不変でこと。
+        //              - .concat()は不変なインスタンスの中身を参照し、それに()内を加えたものをreturnすること。
+        //              この二つのことから、sea.concat(landStr);は "harbor416" を返しているだけでおり、元のインスタンスには影響していないため、 "harbor" が出力された。
     }
 
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
@@ -195,7 +203,14 @@ public class Step01VariableTest extends PlainTestCase {
         StringBuilder sea = new StringBuilder("harbor");
         int land = 415;
         helpMethodArgumentMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 415
+        // result => harbor416
+        // my take => `helpMethodArgumentMethodcall(StringBuilder sea, int land) ` 内で新たなseaインスタンスが作られており、それに `.append(land)` されているだけなので、呼び出し元のseaインスタンスには影響しないと考えた。
+        // actually => `helpMethodArgumentMethodcall(StringBuilder sea, int land) ` 内で新たなseaインスタンスを作っているわけではなく、メソッド引数の中にインスタンスの参照値を格納している。
+        //             なので、 `sea.append(land)` のseaはインスタンスの参照値であり、それを参照してappendしているので元のインスタンスがharborに416が加えられてharbor416となる。
+        // learnings => プライベート関数の引数でインスタンスを受け入れるときは、インスタンスを複製し新たなインスタンスを作っているのではなく、入力インスタンスの参照値が入る。
+        //              プライベート関数内で参照値自体に処理される、参照値内のインスタンスに処理されるのかを紐解く必要あり。
+        //              では、179行目の問題はプライベート関数に参照値が渡されているはずなのに、なぜ値が変わらない？
     }
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
@@ -211,7 +226,8 @@ public class Step01VariableTest extends PlainTestCase {
         StringBuilder sea = new StringBuilder("harbor");
         int land = 415;
         helpMethodArgumentVariable(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => harbor
+        // result => harbor
     }
 
     private void helpMethodArgumentVariable(StringBuilder sea, int land) {
