@@ -144,6 +144,11 @@ public class Step01VariableTest extends PlainTestCase {
         // my take => `instanceDockside`には何も格納されておらず、何もないものを呼んでいるので`null`になると推測した。
         // actually => intはただの型でありオブジェクトを用意せず、何も定義されていないintは0になるので結果0と返された。
         // learnings => 大文字の名前で型定義とオブジェクトの用意を、小文字の略称で型定義のみを行うことを知り、使い分けられることを学んだ。
+        // TODO ishido [ふぉろー] intはプリミティブ型で、Integerがオブジェクト型になります。 by jflute (2026/08/13)
+        // 言葉の使い方ですが、どちらも型(定義)ではあって、型の種類が違うという感じですね。
+        // プリミティブ型は「値そのもののみ」を定義する型、オブジェクト型は「構造体のようなもの」を定義する型。
+        // Integerは、intをラップしてオブジェクトとして扱えるようにした型という感じです。
+        // プリミティブ型をラップしているオブジェクトなので「ラッパー型」とも呼ばれます。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -187,6 +192,8 @@ public class Step01VariableTest extends PlainTestCase {
         //              - Stringはインスタンスの中身が不変でこと。
         //              - .concat()は不変なインスタンスの中身を参照し、それに()内を加えたものをreturnすること。
         //              この二つのことから、sea.concat(landStr);は "harbor416" を返しているだけでおり、元のインスタンスには影響していないため、 "harbor" が出力された。
+        // TODO ishido [いいね] 不変なクラスなので、concat()も戻すスタイルで、しかも受け取ってないし... by jflute (2026/08/13)
+        // 受け取ったとしても、helpメソッドのsea変数は別物なのでtestメソッド側には何も影響がないということですね。
     }
 
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
@@ -211,6 +218,9 @@ public class Step01VariableTest extends PlainTestCase {
         // learnings => プライベート関数の引数でインスタンスを受け入れるときは、インスタンスを複製し新たなインスタンスを作っているのではなく、入力インスタンスの参照値が入る。
         //              プライベート関数内で参照値自体に処理される、参照値内のインスタンスに処理されるのかを紐解く必要あり。
         //              では、179行目の問題はプライベート関数に参照値が渡されているはずなのに、なぜ値が変わらない？
+        // TODO ishido [いいね] "入力インスタンスの参照値が入る" 要はアドレスだけが伝達してるだけなので... by jflute (2026/08/13)
+        // testメソッドのseaもhelpメソッドのseaも同じアドレスを持って同じインスタンスを参照することになります。
+        // TODO jflute 1on1にて深掘り (2026/08/13)
     }
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
