@@ -115,7 +115,41 @@ public class Step01VariableTest extends PlainTestCase {
         // 構造に着目して、目的だけ知る。
         // インスタンス変数とインスタンスメソッドの話。
         // Pythonの例と比べてみた by いしどさん
-        // TODO jflute 次回の1on1にて、immutableのお話 (2026/07/29)
+        // done jflute 次回の1on1にて、immutableのお話 (2026/07/29)
+        // #1on1: immutableとは？ (2026/08/13)
+        // immutable=不変な, mutable=可変な
+        // o immutableなクラス(インスタンス) // default!?
+        // o immutableな変数
+        // 
+        // BigDecimalはimmutableなクラスとして設計されている。
+        // そういうクラスをnewしたら、immutableなインスタンスができあがる。
+        //
+        // immutableなクラスや変数のメリット/デメリットは？
+        // (メリット)
+        // o $開発において定数として扱うものとかをimmutableにして安全にする by いしどさん
+        // o 読み飛ばしとかの可読性につながる (immutableは情報である)
+        //
+        // (デメリット)
+        // o $単純に書き換えられないので、mutableの場面が多く、使い分け/適材適所が？ by いしどさん
+        //   → 適材適所ってデメリットもあって、使う側が使い分けの判断コストが掛かる面がある。
+        //   → あまりに細かい適材適所はちょっと大変。
+        //   → かといってなんでもできる一つの選択肢は、良いデザインとも言えない。
+        //   → 制限が掛かってるからこそ安全で安心して使える → immutable
+        //   → でも、あまりに細かい適材適所は... (無限ループ)
+        // o メモリ使いすぎかも!?
+        // o immutableって手間を掛けてimmutableにするものなので言語サポート欲しい
+        //
+        // immutableの歴史:
+        // o 昔は、メモリが貧弱で、new/newしてたら足りない
+        // o 昔は、言語/エディターが貧弱で、immutableも手間が掛かる
+        // o 今や、メモリもたくさん、言語も発達、デメリットが薄くなってきた
+        //
+        // immutableのバランス:
+        // o 言語や組織や個人の文化に寄る
+        // o Java: 歴史的なこともあるし、コンセプトもあるし、8:2くらいでimmutableで無理しない
+        //  → jflute個人も、Java書く時はそんな感覚
+        //  → mutableなクラスを使う時、安全性と可読性を演出する手段は他にもあるのでそれで工夫する。
+        // o 一方で、100%immutable推しの言語もある
     }
 
     // $ 相談: じっくりやったけど進捗が心配 by いしどさん
@@ -144,11 +178,17 @@ public class Step01VariableTest extends PlainTestCase {
         // my take => `instanceDockside`には何も格納されておらず、何もないものを呼んでいるので`null`になると推測した。
         // actually => intはただの型でありオブジェクトを用意せず、何も定義されていないintは0になるので結果0と返された。
         // learnings => 大文字の名前で型定義とオブジェクトの用意を、小文字の略称で型定義のみを行うことを知り、使い分けられることを学んだ。
-        // TODO ishido [ふぉろー] intはプリミティブ型で、Integerがオブジェクト型になります。 by jflute (2026/08/13)
+        // done ishido [ふぉろー] intはプリミティブ型で、Integerがオブジェクト型になります。 by jflute (2026/08/13)
         // 言葉の使い方ですが、どちらも型(定義)ではあって、型の種類が違うという感じですね。
         // プリミティブ型は「値そのもののみ」を定義する型、オブジェクト型は「構造体のようなもの」を定義する型。
         // Integerは、intをラップしてオブジェクトとして扱えるようにした型という感じです。
         // プリミティブ型をラップしているオブジェクトなので「ラッパー型」とも呼ばれます。
+
+        // #1on1: プリミティブ、オブジェクトなどの言葉 (2026/08/13)
+        // プリミティブ型: int, long, ... (先頭が小文字のもの)
+        // オブジェクト型: String, Integer, Step01VariableTest, ... (プリミティブ型以外全部)
+        // ラッパー型: Integer, Long, ... (プリミティブ対応のオブジェクト型8個のみ)
+        // (StringもBigDecimalもラッピングしてるけど、ラッパー型ではない)
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -192,8 +232,11 @@ public class Step01VariableTest extends PlainTestCase {
         //              - Stringはインスタンスの中身が不変でこと。
         //              - .concat()は不変なインスタンスの中身を参照し、それに()内を加えたものをreturnすること。
         //              この二つのことから、sea.concat(landStr);は "harbor416" を返しているだけでおり、元のインスタンスには影響していないため、 "harbor" が出力された。
-        // TODO ishido [いいね] 不変なクラスなので、concat()も戻すスタイルで、しかも受け取ってないし... by jflute (2026/08/13)
+        // done ishido [いいね] 不変なクラスなので、concat()も戻すスタイルで、しかも受け取ってないし... by jflute (2026/08/13)
         // 受け取ったとしても、helpメソッドのsea変数は別物なのでtestメソッド側には何も影響がないということですね。
+        // #1on1: immutableがわかっていたら、helpメソッドを読まないでも答えがわかる (2026/08/13)
+        // immutableは情報、読み手にとって、その情報を使って理解を進めることができる。
+        // mutableの引数は、読み手にとって、絶対に確認をしないといけなくなる。
     }
 
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
@@ -218,9 +261,10 @@ public class Step01VariableTest extends PlainTestCase {
         // learnings => プライベート関数の引数でインスタンスを受け入れるときは、インスタンスを複製し新たなインスタンスを作っているのではなく、入力インスタンスの参照値が入る。
         //              プライベート関数内で参照値自体に処理される、参照値内のインスタンスに処理されるのかを紐解く必要あり。
         //              では、179行目の問題はプライベート関数に参照値が渡されているはずなのに、なぜ値が変わらない？
-        // TODO ishido [いいね] "入力インスタンスの参照値が入る" 要はアドレスだけが伝達してるだけなので... by jflute (2026/08/13)
+        // #1on1: ↑一個前のエクササイズのこと。いまやimmutableが理解できたので問題なし。 (2026/08/13)
+        // done ishido [いいね] "入力インスタンスの参照値が入る" 要はアドレスだけが伝達してるだけなので... by jflute (2026/08/13)
         // testメソッドのseaもhelpメソッドのseaも同じアドレスを持って同じインスタンスを参照することになります。
-        // TODO jflute 1on1にて深掘り (2026/08/13)
+        // done jflute 1on1にて深掘り (2026/08/13)
     }
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
@@ -245,6 +289,7 @@ public class Step01VariableTest extends PlainTestCase {
         String seaStr = sea.toString(); // is "harbor"
         sea = new StringBuilder(seaStr).append(land);
     }
+    // TODO jflute 1on1ふぉろーここまでやった (2026/08/13)
 
     // ===================================================================================
     //                                                                           Challenge
