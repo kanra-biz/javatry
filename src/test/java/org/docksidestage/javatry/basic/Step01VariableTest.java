@@ -310,8 +310,12 @@ public class Step01VariableTest extends PlainTestCase {
      * o すべての変数をlog()でカンマ区切りの文字列で表示
      * </pre>
      */
+    private int piari;
     public void test_variable_writing() {
         // define variables here
+        String sea = "mystic";
+        Integer land = null;
+        log(sea + "," + land + "," + piari);
     }
 
     // ===================================================================================
@@ -323,11 +327,31 @@ public class Step01VariableTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     * 以下のlogの出力結果は？
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
+    private String MiraCosta;
+    private int Celebration;
+    private String DLand = "Angel";
+    private StringBuilder TStory;
     public void test_variable_yourExercise() {
         // write your code here
+        StringBuilder FantasySprings = new StringBuilder("Little");
+        Celebration = 4;
+        StringBuilder Dreamlights = new StringBuilder("Lost");
+        PhilharMagic(Dreamlights, FantasySprings);
+        MiraCosta = FantasySprings + DLand + TStory;
+        MiraCosta.concat("s");
+        log(MiraCosta + "s");
+    }
+
+    private void PhilharMagic(StringBuilder Ambassador, StringBuilder BonVoyage) {
+        String FantasySprings = "Boy";
+        Celebration++;
+        TStory = new StringBuilder("Caroler");
+        Celebration++;
+        Ambassador.append(FantasySprings);
+        BonVoyage = Ambassador.append(Celebration);
     }
 }

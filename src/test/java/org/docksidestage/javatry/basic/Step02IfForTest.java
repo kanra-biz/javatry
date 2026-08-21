@@ -42,6 +42,7 @@ public class Step02IfForTest extends PlainTestCase {
             sea = 2001;
         }
         log(sea); // your answer? => 2001
+        // result => 2001
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -52,7 +53,8 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 7;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
+        // result => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -67,7 +69,8 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 9;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
+        // result => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -107,7 +110,14 @@ public class Step02IfForTest extends PlainTestCase {
         if (land) {
             sea = 10;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 1810
+        // result => 10
+        // my take => `if (sea % 2 == 0) { sea = sea++ * 2; }` で sea=1810 になり、
+        //            `if (!land) { land = true; }` で land=true になるので、それ以降の条件分岐に引っかからないと考えた。
+        // actually => 最後の `if (land) { sea = 10; }` を見落としており、land=true は理解していたのに sea=10 にし忘れた。
+        //             また、今回の回答結果に直接影響はしないが、`sea = sea++ * 2;` の sea++ は後置インクリメントのため sea=1808 になり、後々の条件分岐に引っかかっていた。
+        // learnings => 最後まで注意力を落とさず、漏れがないよう確認することは大事。
+        //              また、前置インクリメントか後置インクリメントかで処理内容が変わってくる。
     }
 
     // ===================================================================================
