@@ -311,6 +311,7 @@ public class Step01VariableTest extends PlainTestCase {
      * </pre>
      */
     private int piari;
+
     public void test_variable_writing() {
         // define variables here
         String sea = "mystic";
@@ -335,6 +336,7 @@ public class Step01VariableTest extends PlainTestCase {
     private int Celebration;
     private String DLand = "Angel";
     private StringBuilder TStory;
+
     public void test_variable_yourExercise() {
         // write your code here
         StringBuilder FantasySprings = new StringBuilder("Little");
@@ -344,6 +346,8 @@ public class Step01VariableTest extends PlainTestCase {
         MiraCosta = FantasySprings + DLand + TStory;
         MiraCosta.concat("s");
         log(MiraCosta + "s");
+        // #1on1: 1on1の場で一緒にやってみた。大変だった (2026/08/28)
+        // 名前が素敵だし、答えも素敵。
     }
 
     private void PhilharMagic(StringBuilder Ambassador, StringBuilder BonVoyage) {
