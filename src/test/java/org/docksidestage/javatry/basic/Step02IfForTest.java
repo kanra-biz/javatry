@@ -144,6 +144,7 @@ public class Step02IfForTest extends PlainTestCase {
         // TODO ishido [読み物課題] jfluteのプログラマーオススメ五冊 by jflute (2026/08/28)
         // https://jflute.hatenadiary.jp/entry/20150727/fivebooks
         // 宿題: 背景は？
+        // →裏隔週の金曜日時点で探せてないため、隔週の1on1までに探したい！
     }
 
     // ===================================================================================
@@ -159,7 +160,8 @@ public class Step02IfForTest extends PlainTestCase {
                 sea = stage;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
+        // result => dockside
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -169,7 +171,8 @@ public class Step02IfForTest extends PlainTestCase {
         for (String stage : stageList) {
             sea = stage;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => magiclamp
+        // result => magiclamp
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -185,7 +188,8 @@ public class Step02IfForTest extends PlainTestCase {
                 break;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
+        // result => hangar
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -201,7 +205,8 @@ public class Step02IfForTest extends PlainTestCase {
             }
         });
         String sea = sb.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
+        // result => dockside
     }
 
     // ===================================================================================
@@ -213,6 +218,19 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_making() {
         // write if-for here
+        List<String> dreamList = prepareStageList();
+        List<String> imaginationList = new ArrayList<>();
+        dreamList.forEach(sea->{
+            if (sea.contains("a")) {
+                imaginationList.add(sea);
+            }
+        });
+        imaginationList.forEach(sea->{
+            log(sea);
+        });
+        // memo => 空リストの作り方がわからず、`new ArrayList<>();` のみ調べた。
+        //         新しいインスタンスを作るのだから new する方針であった。
+        //         → 言われてみれば当然だが、この発想に至らなかった。
     }
 
     // ===================================================================================
@@ -235,6 +253,21 @@ public class Step02IfForTest extends PlainTestCase {
             }
         }
         log(sea); // should be same as before-fix
+
+        StringBuilder SEA = new StringBuilder();
+        stageList.forEach(stage->{
+            if (stage.startsWith("br")) {
+                return;
+            }
+            if (SEA.length() == 0 && stage.contains("ga")) {
+                SEA.append(stage);
+            }
+        });
+        log(SEA);
+        // memo => `sea = null;` を使ってforEachで実装しようと思ったが、うまく実装できなかった。
+        //　　　　　　forEachはラムダ式（オブジェクト関数）なため、ローカル変数のseaは書き換えられない。
+        //          Stringでの実装方法が思いつかなかったため、mutableなStringBuilderでインスタンスの中身に変更を加えて擬似的な実装をした。
+        //          Stringでの実装方法があれば知りたい。
     }
 
     /**
