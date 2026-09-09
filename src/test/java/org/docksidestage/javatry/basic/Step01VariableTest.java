@@ -289,7 +289,7 @@ public class Step01VariableTest extends PlainTestCase {
         String seaStr = sea.toString(); // is "harbor"
         sea = new StringBuilder(seaStr).append(land);
     }
-    // TODO jflute 1on1ふぉろーここまでやった (2026/08/13)
+    // done jflute 1on1ふぉろーここまでやった (2026/08/13)
 
     // ===================================================================================
     //                                                                           Challenge

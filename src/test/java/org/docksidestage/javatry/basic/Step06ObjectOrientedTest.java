@@ -283,6 +283,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     // ===================================================================================
     //                                                              Polymorphism Interface
     //                                                              ======================
+    // #1on1: step2のtest_for_foreach_basic()でinterfaceの先取りをしていた (2026/09/09)
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_interface_dispatch() {
         Loudable loudable = new Zombie();

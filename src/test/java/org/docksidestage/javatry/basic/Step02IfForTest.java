@@ -160,6 +160,7 @@ public class Step02IfForTest extends PlainTestCase {
                 sea = stage;
             }
         }
+        stageList.add(3, "bbb");
         log(sea); // your answer? => dockside
         // result => dockside
     }
@@ -173,6 +174,26 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // your answer? => magiclamp
         // result => magiclamp
+
+        // #1on1: Javaの文法としてのループ2つ (2026/09/09)
+        // intあいのfor文: Javaの当初から (1995年) // 伝統的なループ
+        // 拡張for文(foreach文): Java10年目くらいから (2005年くらい) // 普通のループ(for文)
+        //
+        // intあいのfor文: つど探しに行く (0番目、1番目、...)
+        // 拡張for文: 次の方、次の方、... // Iterator
+        //
+        // ↑きっかけで
+        // ArrayListとLinkedListの違いのお話。
+        // $LinkedListの存在意義は？ by いしどさん
+        //
+        // 普通ループを回す分には、やっぱりArrayListの方がフィットするので、
+        // LinkedList は確かにあんまり見かけないもの。
+        // 途中に値を追加する add(index, element) の場合のお話。
+        //
+        // Listという概念をどう実現するか？選択肢があるもの。
+        // でも、使う側はどっち？ってのを意識したくないから、
+        // 単純な List というデータ型で扱っている。
+        // interfaceの先取り。step6でもっとじっくり。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -220,17 +241,22 @@ public class Step02IfForTest extends PlainTestCase {
         // write if-for here
         List<String> dreamList = prepareStageList();
         List<String> imaginationList = new ArrayList<>();
-        dreamList.forEach(sea->{
+        dreamList.forEach(sea -> {
             if (sea.contains("a")) {
                 imaginationList.add(sea);
             }
         });
-        imaginationList.forEach(sea->{
+        imaginationList.forEach(sea -> {
             log(sea);
         });
         // memo => 空リストの作り方がわからず、`new ArrayList<>();` のみ調べた。
         //         新しいインスタンスを作るのだから new する方針であった。
         //         → 言われてみれば当然だが、この発想に至らなかった。
+        // #1on1: 確かに、昨今言語だと、単純にnewするではなく、何か特別な書き方で空リストができるとかあるので(^^ (2026/09/09)
+        // List.of("a", "b");
+        // List.of(); ??? → でもそもそもimmutableなlistだったら空のリストなんて作らない。
+
+        // imagination, Good。ハーバー思い出す。 (2026/09/09)
     }
 
     // ===================================================================================
@@ -254,8 +280,10 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // should be same as before-fix
 
+        // TODO ishido "ga" がなかった場合の結果も同じになるようにしてみましょう by jflute (2026/09/09)
         StringBuilder SEA = new StringBuilder();
-        stageList.forEach(stage->{
+        stageList.forEach(stage -> {
+            // ここがすでにtest_メソッド配下ではなく、別世界
             if (stage.startsWith("br")) {
                 return;
             }
@@ -268,6 +296,38 @@ public class Step02IfForTest extends PlainTestCase {
         //　　　　　　forEachはラムダ式（オブジェクト関数）なため、ローカル変数のseaは書き換えられない。
         //          Stringでの実装方法が思いつかなかったため、mutableなStringBuilderでインスタンスの中身に変更を加えて擬似的な実装をした。
         //          Stringでの実装方法があれば知りたい。
+        // #1on1: Stringでの実装方法は、まあないと思います。 (2026/09/09)
+        // 外側のローカル変数を -> {} の中で書き換えができないから。
+        //
+        // なんで、外側のローカル変数を書き換えられないの？ (文法のルールなんで？)
+        // $ -> {} は関数オブジェクトだから、別の場所にあるから!?
+        // Good, かなり良い表現されています。
+        // ローカル変数としてのコンセプトを崩さないように。
+        // (もしOKにしちゃったら、色々カオスが想像できる)
+        //
+        // forEach()メソッドのコードリーディング。
+        // 単なるメソッド、拡張for文の代理人みたいな感じ。
+        //
+        // $forEach()メソッドの存在意義は？
+        // $外側のローカル変数を破壊されることがないから？
+        //
+        // immutable/mutableを思い出してみましょう。
+        // できないから、安心/安全、そして、可読性。
+        //
+        // forEach()メソッド: Java20年目くらいから (2015年くらい)
+        //
+        // webサービスだと、ストレートなループで終わることが多いので、
+        // forEach()メソッドがフィットする。
+        //
+        // なので、Javaだと適材適所なやり方になっている。
+        //
+        // よもやま: 一方で、適材適所すぎるのもつらい話 (2026/09/09)
+        // 使い分けの判断コスト。7,8種類とかになったら使いこなせない。
+        //
+        // o 2,3種類くらいで止めるとか...
+        // o 1種類にして統一のメリットを優先するとか...
+        //
+        // 工業デザインのバランスジレンマ。
     }
 
     /**
