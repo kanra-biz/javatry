@@ -17,6 +17,10 @@ package org.docksidestage.javatry.basic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.Objects;
 
 import org.docksidestage.unit.PlainTestCase;
 
@@ -335,13 +339,32 @@ public class Step02IfForTest extends PlainTestCase {
      * (if文for文についてあなたのオリジナルの質問形式のエクササイズを作ってみましょう)
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-     * your question here (ここにあなたの質問を):
-     * 
+     * your question here (ここにあなたの質問を): 何が出力されるか？
+     *                                         また、forEachでなくindexが用意されるforならばどのように書き換えられるだろうか？
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
     public void test_iffor_yourExercise() {
         // write your code here
+        List<String> stageList = prepareStageList();
+        List<Integer> ageList = Arrays.asList(20, 19, null, 18);
+        Integer newAdults = 20;
+        List<String> stageListLog = new ArrayList<>();
+
+        Map<String, Integer> firstVisit = new LinkedHashMap<>();
+        stageList.forEach(stage -> {
+            firstVisit.put(stage, ageList.get(stageList.indexOf(stage)));
+        });
+
+        firstVisit.forEach((stage, age) -> {
+            if (Objects.equals(age, newAdults)) {
+                stageListLog.add(stage);
+            }
+        });
+
+        stageListLog.forEach(stage -> {
+            log(stage);
+        });
     }
 
     // ===================================================================================

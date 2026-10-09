@@ -54,7 +54,7 @@ public class Step03DataTypeTest extends PlainTestCase {
             BigDecimal addedDecimal = amba.add(new BigDecimal(land));
             sea = String.valueOf(addedDecimal);
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 18.9
     }
 
     // ===================================================================================
@@ -82,7 +82,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         if ((int) dstore > piari) {
             sea = 0;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 2
     }
 
     // ===================================================================================
@@ -92,7 +92,10 @@ public class Step03DataTypeTest extends PlainTestCase {
     public void test_datatype_object() {
         St3ImmutableStage stage = new St3ImmutableStage("hangar");
         String sea = stage.getStageName();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
+        // memo => St3ImmutableStageが何回か登場するが、`class St3ImmutableStage` はクラス、`St3ImmutableStage(String stageName)` はコンストラクタ。
+        //         上では左辺でstageというクラスを作り、右辺でstageName="hangar"をコンストラクタを介して値を用意している。
+        //         そして最後にgetStageNameを呼んでstageName="hangar"をreturnしている。
     }
 
     private static class St3ImmutableStage {
