@@ -16,10 +16,10 @@
 package org.docksidestage.javatry.basic;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
-import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.docksidestage.unit.PlainTestCase;
@@ -149,6 +149,7 @@ public class Step02IfForTest extends PlainTestCase {
         // https://jflute.hatenadiary.jp/entry/20150727/fivebooks
         // 宿題: 背景は？
         // →裏隔週の金曜日時点で探せてないため、隔週の1on1までに探したい！
+        // #1on1: 推測までできている、次回みてきてください (2026/10/16)
     }
 
     // ===================================================================================
@@ -347,11 +348,26 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_yourExercise() {
         // write your code here
         List<String> stageList = prepareStageList();
+        // #1on1: メタ情報の意味、夢のあるエクササイズでGood (2026/10/16)
         List<Integer> ageList = Arrays.asList(20, 19, null, 18);
         Integer newAdults = 20;
         List<String> stageListLog = new ArrayList<>();
 
         Map<String, Integer> firstVisit = new LinkedHashMap<>();
+        // #1on1: intあいのケース、ライブコーディングしてみた (2026/10/16)
+        //for (int i = 0; i < stageList.size(); i++) {
+        //    String stage = stageList.get(i);
+        //    Integer age = ageList.get(i);
+        //    firstVisit.put(stage, age);
+        //}
+        //
+        // 拡張for文の場合:
+        //int index = 0;
+        //for (String stage : stageList) {
+        //    Integer age = ageList.get(index);
+        //    firstVisit.put(stage, age);
+        //    ++index;
+        //}
         stageList.forEach(stage -> {
             firstVisit.put(stage, ageList.get(stageList.indexOf(stage)));
         });
@@ -365,6 +381,9 @@ public class Step02IfForTest extends PlainTestCase {
         stageListLog.forEach(stage -> {
             log(stage);
         });
+
+        // #1on1: broadway! やったー (2026/10/16)
+        // 漠然読みのライブリーディングさせてもらいました。
     }
 
     // ===================================================================================

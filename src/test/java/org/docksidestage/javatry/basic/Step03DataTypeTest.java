@@ -40,6 +40,22 @@ public class Step03DataTypeTest extends PlainTestCase {
     public void test_datatype_basicType() {
         String sea = "mystic";
         Integer land = 416;
+        // #1on1: Date/DateTime (日付・日時) という言葉 (2026/10/16)
+        // Date(日付): 年月日
+        // DateTime(日時): 年月日 + 時分秒 (ミリ秒...)
+        //
+        // ↑おおよそこういう感覚でクラスも作られている...が、
+        // 歴史的な背景もあって、そうじゃないものも時々あるので注意。
+        // java.util.Date, OracleDB DATE型が時分秒。
+        //
+        // jfluteの感想、日付と日時を包括して表現する言葉って？
+        // 日付系クラス、日付クラスって言って、「日付と日時を包括」が通じやすい。(前後関係次第だけど)
+        // 広義と狭義で、どっちも「日付」が使われるかなぁと。
+        //
+        // ぼくらは用語にこだわるお仕事なので、こういう思考トレーニングも大事。
+        // DDDにもつながる話。
+        //
+        // 余談: Unixエポック秒とオーバーフロー話
         LocalDate piari = LocalDate.of(2001, 9, 4);
         LocalDateTime bonvo = LocalDateTime.of(2001, 9, 4, 12, 34, 56);
         Boolean dstore = true;

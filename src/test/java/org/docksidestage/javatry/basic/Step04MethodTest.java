@@ -17,6 +17,7 @@ package org.docksidestage.javatry.basic;
 
 import org.docksidestage.unit.PlainTestCase;
 
+// TODO jflute 次回step4から (2026/10/16)
 /**
  * The test of method. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
