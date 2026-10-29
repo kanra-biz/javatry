@@ -297,6 +297,19 @@ public class Step02IfForTest extends PlainTestCase {
             }
         });
         log(SEA);
+
+        // "ga" がなかった場合の結果も同じになるように修正
+        StringBuilder Sea = new StringBuilder();
+        stageList.forEach(stage -> {
+            if (!Sea.toString().contains("ga")) {
+                if (stage.startsWith("br")) {
+                    return;
+                }
+                Sea.setLength(0);
+                Sea.append(stage);
+            }
+        });
+        log(Sea);
         // memo => `sea = null;` を使ってforEachで実装しようと思ったが、うまく実装できなかった。
         //　　　　　　forEachはラムダ式（オブジェクト関数）なため、ローカル変数のseaは書き換えられない。
         //          Stringでの実装方法が思いつかなかったため、mutableなStringBuilderでインスタンスの中身に変更を加えて擬似的な実装をした。

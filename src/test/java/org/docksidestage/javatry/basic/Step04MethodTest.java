@@ -36,7 +36,8 @@ public class Step04MethodTest extends PlainTestCase {
      */
     public void test_method_call_basic() {
         String sea = supplySomething();
-        log(sea); // your answer? =>
+        log(sea); // your answer? => over
+        // result => over
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -44,7 +45,8 @@ public class Step04MethodTest extends PlainTestCase {
         String sea = functionSomething("mystic");
         consumeSomething(supplySomething());
         runnableSomething();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => mysmys
+        // result => mysmys
     }
 
     private String functionSomething(String name) {
@@ -77,7 +79,8 @@ public class Step04MethodTest extends PlainTestCase {
         if (!land) {
             sea = sea + mutable.getStageName().length();
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 910
+        // result => 910
     }
 
     private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
@@ -116,7 +119,8 @@ public class Step04MethodTest extends PlainTestCase {
         }
         ++sea;
         sea = inParkCount;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 100
+        // result => 100
     }
 
     private void offAnnualPassport(boolean hasAnnualPassport) {
@@ -153,12 +157,35 @@ public class Step04MethodTest extends PlainTestCase {
      */
     public void test_method_making() {
         // use after making these methods
-        //String replaced = replaceCwithB(replaceAwithB("ABC"));
-        //String sea = quote(replaced, "'");
-        //if (isAvailableLogging()) {
-        //    showSea(sea);
-        //}
+        String replaced = replaceCwithB(replaceAwithB("ABC"));
+        String sea = quote(replaced, "'");
+        if (isAvailableLogging()) {
+            showSea(sea);
+        }
     }
 
     // write methods here
+    private String replaceAwithB(String request) {
+        String response = request.replace("A", "B");
+        return response;
+    }
+
+    private String replaceCwithB(String request) {
+        String response = request.replace("C", "B");
+        return response;
+    }
+
+    private String quote(String content, String container) {
+        String response = container + content + container;
+        return response;
+    }
+
+    private boolean isAvailableLogging() {
+        boolean availableLogging = true;
+        return availableLogging;
+    }
+
+    private void showSea (String request) {
+        log(request);
+    }
 }
