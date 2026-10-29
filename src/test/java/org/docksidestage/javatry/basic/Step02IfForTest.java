@@ -142,10 +142,10 @@ public class Step02IfForTest extends PlainTestCase {
         //
         // よもやま話: 仮説思考的なコードリーディング!?
         // 
-        // TODO ishido [読み物課題] My Favorite Book: 仮説思考 by jflute (2026/08/28)
+        // done ishido [読み物課題] My Favorite Book: 仮説思考 by jflute (2026/08/28)
         // https://jflute.hatenadiary.jp/entry/20150111/kasetsu
         //
-        // TODO ishido [読み物課題] jfluteのプログラマーオススメ五冊 by jflute (2026/08/28)
+        // TODO ishido 修行++: [読み物課題] jfluteのプログラマーオススメ五冊 by jflute (2026/08/28)
         // https://jflute.hatenadiary.jp/entry/20150727/fivebooks
         // 宿題: 背景は？
         // →裏隔週の金曜日時点で探せてないため、隔週の1on1までに探したい！
@@ -285,7 +285,7 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // should be same as before-fix
 
-        // TODO ishido "ga" がなかった場合の結果も同じになるようにしてみましょう by jflute (2026/09/09)
+        // done ishido "ga" がなかった場合の結果も同じになるようにしてみましょう by jflute (2026/09/09)
         StringBuilder SEA = new StringBuilder();
         stageList.forEach(stage -> {
             // ここがすでにtest_メソッド配下ではなく、別世界
@@ -301,6 +301,11 @@ public class Step02IfForTest extends PlainTestCase {
         // "ga" がなかった場合の結果も同じになるように修正
         StringBuilder Sea = new StringBuilder();
         stageList.forEach(stage -> {
+            // TODO ishido brのreturn使ってるなら、gaもreturn方式で by jflute (2026/10/29)
+            // TODO ishido StringBuilderを毎ループStringに変換しているので... by jflute (2026/10/29)
+            // パフォーマンスのためにStringBuilderのまま判定したいところ。
+            // (toString()のコードを読んでみた、毎回char[]をコピーしている)
+            // ループの中なので、チリも積もればのコストがどんどん積み上がる。
             if (!Sea.toString().contains("ga")) {
                 if (stage.startsWith("br")) {
                     return;
@@ -406,7 +411,7 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = new ArrayList<>();
         stageList.add("broadway");
         stageList.add("dockside");
-        stageList.add("hangar");
+        //stageList.add("hangar");
         stageList.add("magiclamp");
         return stageList;
     }

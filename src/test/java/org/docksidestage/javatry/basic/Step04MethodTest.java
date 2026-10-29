@@ -17,7 +17,7 @@ package org.docksidestage.javatry.basic;
 
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO jflute 次回step4から (2026/10/16)
+// done jflute 次回step4から (2026/10/16)
 /**
  * The test of method. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -164,6 +164,17 @@ public class Step04MethodTest extends PlainTestCase {
         }
     }
 
+    // #1on1: いいね、メソッド定義位置がメソッド呼び出し順序と一致してて直感的で把握しやすい (2026/10/29)
+    // $普段わりとそうしている
+    // なんだかん人間、そういう付加情報に頼って理解をしたりしている。
+    // メソッド呼び出し順と、まとまりの関係性。
+    // $直感重視ならメソッド呼び出し順を優先、ファイル単位とかあればまとまり重視
+    // jflute: まとまりの存在感がどのくらいか？まとめた方が管理しやすいレベルか？
+    // 一方で、まとまりを優先する時は、もうちょい大袈裟に独立させてしまう。
+    // まとまり + 呼び出し順のハイブリッドの紹介。
+    // LastaFlute の ActionRequestProcessor の例。
+    // 「まとまり + 呼び出し順」の意識、少しでも現場でもあるとコードの読みやすさだいぶ変わる。
+    // TODO jflute 次回、もう半分、新メソッド、現場で一番下に追加されやすい問題 (2026/10/29)
     // write methods here
     private String replaceAwithB(String request) {
         String response = request.replace("A", "B");
@@ -175,6 +186,8 @@ public class Step04MethodTest extends PlainTestCase {
         return response;
     }
 
+    // #1on1: いいね、第二引数名、業務的な名前が付いている (2026/10/29)
+    // $囲うものということでcontainer
     private String quote(String content, String container) {
         String response = container + content + container;
         return response;
@@ -185,7 +198,7 @@ public class Step04MethodTest extends PlainTestCase {
         return availableLogging;
     }
 
-    private void showSea (String request) {
+    private void showSea(String request) {
         log(request);
     }
 }
