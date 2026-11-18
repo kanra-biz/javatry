@@ -315,6 +315,25 @@ public class Step02IfForTest extends PlainTestCase {
             }
         });
         log(Sea);
+
+        // 初めからStringを用意し、brが含まれているものは早期return
+        StringBuilder TDS = stageList.isEmpty() ? null : new StringBuilder();
+        if (!stageList.isEmpty()) {
+            // memo => stageListが空だった際にTDSをnullにする処置
+            //         早期returnなど複数方法を検討したが、後続で警告が出てしまうためifで囲う判断をした
+            stageList.forEach(stage -> {
+                if (TDS.indexOf("ga") != -1) {
+                    return;
+                }
+                // memo => StringBuilderはmutable、stringはimmutableなことからどちらかに揃えて調整が難しい
+                if (stage.startsWith("br")) {
+                    return;
+                }
+                TDS.setLength(0);
+                TDS.append(stage);
+            });
+        }
+        log(TDS);
         // memo => `sea = null;` を使ってforEachで実装しようと思ったが、うまく実装できなかった。
         //　　　　　　forEachはラムダ式（オブジェクト関数）なため、ローカル変数のseaは書き換えられない。
         //          Stringでの実装方法が思いつかなかったため、mutableなStringBuilderでインスタンスの中身に変更を加えて擬似的な実装をした。

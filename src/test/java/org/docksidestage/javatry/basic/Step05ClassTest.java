@@ -43,7 +43,15 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(7400);
         int sea = booth.getQuantity();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7400
+        // result => 9
+        // my take => getQuantityでboothの中にあるインスタンスの値を取得しているのだと考えていた。
+        // actually => src/main/java/org/docksidestage/bizfw/basic/buyticket/TicketBooth.java に定義されているTicketBoothを呼び出していた。
+        //             getQuantity は MAX_QUANTITY = 10 が設定されており、購入するロジックである buyOneDayPassport で1枚購入されている。
+        //             結果 getQuantity で取得される quantity は9であった。
+        // memo => TicketBoothがクラスでファイル外にあると気づけなかった。
+        //         全ては7400円でチケットが買えなくなったことによる虚しさのせい...
+        //         Dハロは12400円しました。高すぎる。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -51,20 +59,32 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 10000
+        // result => 10000
+
+        // refactored answer => 7400
+        // refactored result => 7400
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_nosales() {
         TicketBooth booth = new TicketBooth();
         Integer sea = booth.getSalesProceeds();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => null
+        // result => null
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_wrongQuantity() {
         Integer sea = doTest_class_ticket_wrongQuantity();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 10
+        // result => 9
+        // my take => handedMoney が7399円なのでエラーを返すため計算がされず10枚のままであると考えた。
+        // actually => 料金の判定処理の前にチケット枚数の計算処理が走っていた。
+        // memo => 先にチケット枚数計算処理をしているのを見逃していた。
+
+        // refactored answer => 10
+        // refactored result => 10
     }
 
     private Integer doTest_class_ticket_wrongQuantity() {
@@ -108,11 +128,11 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_makeMethod_twoday() {
         // uncomment after making the method
-        //TicketBooth booth = new TicketBooth();
-        //int money = 14000;
-        //int change = booth.buyTwoDayPassport(money);
-        //Integer sea = booth.getSalesProceeds() + change;
-        //log(sea); // should be same as money
+        TicketBooth booth = new TicketBooth();
+        int money = 14000;
+        int change = booth.buyTwoDayPassport(money);
+        Integer sea = booth.getSalesProceeds() + change;
+        log(sea); // should be same as money
 
         // and show two-day passport quantity here
     }
