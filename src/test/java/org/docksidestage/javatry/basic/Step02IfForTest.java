@@ -301,8 +301,8 @@ public class Step02IfForTest extends PlainTestCase {
         // "ga" がなかった場合の結果も同じになるように修正
         StringBuilder Sea = new StringBuilder();
         stageList.forEach(stage -> {
-            // TODO ishido brのreturn使ってるなら、gaもreturn方式で by jflute (2026/10/29)
-            // TODO ishido StringBuilderを毎ループStringに変換しているので... by jflute (2026/10/29)
+            // done ishido brのreturn使ってるなら、gaもreturn方式で by jflute (2026/10/29)
+            // done ishido StringBuilderを毎ループStringに変換しているので... by jflute (2026/10/29)
             // パフォーマンスのためにStringBuilderのまま判定したいところ。
             // (toString()のコードを読んでみた、毎回char[]をコピーしている)
             // ループの中なので、チリも積もればのコストがどんどん積み上がる。
@@ -318,10 +318,21 @@ public class Step02IfForTest extends PlainTestCase {
 
         // 初めからStringを用意し、brが含まれているものは早期return
         StringBuilder TDS = stageList.isEmpty() ? null : new StringBuilder();
+        // #1on1: 一応、!stageList.isEmpty() のif文なくてもEclipseでは警告は出ない。 (2026/11/18)
+        // 論理的にTDSがnullの状態で利用されることがありえないから。
+        // でもIntelliJだと警告が出る。三項演算子のところ見て警告出しているわけではなさそう。
+        // とはいえ、ややこしいことには変わりがなく、「絶妙に大丈夫じゃん」は避けたいところ。
+        // TDSはnullなしにして、log();のところで "null" 表現を入れる方が素直かも。
+        // 変数で "null" 表現も解決するとなったら、別途result変数とか作って...
+        // result = TDS.length() == 0 ? null : TDS.toString();
+        // 最後に解決してあげるやり方も。
         if (!stageList.isEmpty()) {
             // memo => stageListが空だった際にTDSをnullにする処置
             //         早期returnなど複数方法を検討したが、後続で警告が出てしまうためifで囲う判断をした
             stageList.forEach(stage -> {
+                // #1on1: indexOf()を使ってtoString()のnewStringコストを回避Good (2026/11/18)
+                // (TDS.indexOf("ga") != -1) → (TDS.indexOf("ga") >= 0)
+                // の方がもうちょい直感的かな。
                 if (TDS.indexOf("ga") != -1) {
                     return;
                 }

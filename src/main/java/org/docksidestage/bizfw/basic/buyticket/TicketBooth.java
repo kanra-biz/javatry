@@ -15,6 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+// TODO ishido JavaDoc, author追加お願いします by jflute (2026/11/18)
 /**
  * @author jflute
  */
@@ -66,7 +67,7 @@ public class TicketBooth {
         }
         --quantity;
         if (salesProceeds != null) { // second or more purchase
-            salesProceeds = salesProceeds + ONE_DAY_PRICE;
+            salesProceeds = salesProceeds + handedMoney;
         } else { // first purchase
             salesProceeds = ONE_DAY_PRICE;
         }

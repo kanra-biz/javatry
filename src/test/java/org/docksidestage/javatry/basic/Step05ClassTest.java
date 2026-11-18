@@ -19,6 +19,7 @@ import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.unit.PlainTestCase;
 
+// TODO ishido authorお願いします by jflute (2026/11/18)
 /**
  * The test of class. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -122,6 +123,20 @@ public class Step05ClassTest extends PlainTestCase {
         log(sea); // should be same as one-day price, visual check here
     }
 
+    // #1on1: 特徴的な二つのバグ (2026/11/18)
+    // o お金不足でもチケットが減る問題: 複数行の流れのバグ
+    //  i 業務の流れを理解していないの見つけづらい (前後関係を見ていないと)
+    //  i 実務ではもっと構造化されていて流れがわかりづらくなってる可能性もある
+    //  i 今回はテストでも見つけづらい減少、例外発生時じゃないと顕在化しないバグ
+    //  
+    // o 受け取ったお金の分だけ売上が増えていく問題: 単行のロジックのバグ
+    //  i 比較的見つけやすい
+    //  i 一方で変数名がアバウトだと、これも見つけづらくなる話
+    //  i シンプルな変数名には憧れるが、単行の直感性をロスしている可能性もある
+    //
+    // 流れのバグは、意識して見つけようと思うことが大事。
+    // レビュー時に、「前後関係のチェック」という独立項目で意識してレビューしても良いくらい。
+
     /**
      * Make method for buying two-day passport (price is 13200). (which can return change as method return value)
      * (TwoDayPassport (金額は13200) も買うメソッドを作りましょう (戻り値でお釣りをちゃんと返すように))
@@ -135,8 +150,15 @@ public class Step05ClassTest extends PlainTestCase {
         log(sea); // should be same as money
 
         // and show two-day passport quantity here
+
+        // #1on1: $一括で再利用したメソッド作ろうとしたが複雑になりそうだったのでいったんコピペ (2026/11/18)
+        // それGood。0の状態からいきなり再利用メソッドを作ろうとすると、
+        // まだ見えてないものを作ろうとしてるようなもので、難易度高くなる。
+        // それよりは、いっかいコピペ作って、冗長が目に見える状態で作ったほうがやりやすい。
+        // リファクタリングの踊り場を作る、みたいな感じ。
     }
 
+    // TODO jflute 次回1on1ここから (2026/11/18)
     /**
      * Recycle duplicate logics between one-day and two-day by e.g. private method in class. (And confirm result of both before and after) <br>
      * (OneDayとTwoDayで冗長なロジックがあったら、クラス内のprivateメソッドなどで再利用しましょう (修正前と修正後の実行結果を確認))
